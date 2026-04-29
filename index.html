@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" id="themeColor" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Scrum Poker" />
+  <meta name="description" content="A simple scrum poker app for agile teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nevdelap.github.io/scrum-poker/" />
+  <meta property="og:title" content="Scrum Poker" />
+  <meta property="og:description" content="A simple scrum poker app for agile teams." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scrum Poker" />
+  <meta name="twitter:description" content="A simple scrum poker app for agile teams." />
+  <link rel="canonical" href="https://nevdelap.github.io/scrum-poker/" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="sitemap" type="application/xml" href="sitemap.xml" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG52HJW8GT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PG52HJW8GT');
+  </script>
+  <!-- Set theme before first paint to avoid flash -->
+  <script>!function(){var t=localStorage.getItem('theme')||'light';document.documentElement.dataset.theme=t;document.getElementById('themeColor').content=t==='dark'?'#000000':'#f5f5f5'}()</script>
+  <title>Scrum Poker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Scrum Poker",
+    "url": "https://nevdelap.github.io/scrum-poker/",
+    "description": "A simple scrum poker app for agile teams.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Nev Delap",
+      "url": "https://github.com/nevdelap"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000;
+      --bg-surface: #0a0a0a;
+      --border-faint: #0a0a0a;
+      --border-subtle: #111;
+      --border-mid: #222;
+      --border-strong: #444;
+      --text: #fff;
+      --text-dim: #ccc;
+      --text-muted: #888;
+      --text-faint: #999;
+      --text-empty: #333;
+      --accent: #2563eb;
+      --accent-dim: #1e3a5f;
+      --accent-light: #60a5fa;
+      --accent-lighter: #93c5fd;
+      --scrollbar-thumb: #1e3a5f;
+      --hover-text: #fff;
+      --error-border: #7f1d1d;
+      --error-text: #f87171;
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #fdfdfd;
+      --bg-surface: #fff;
+      --border-faint: #e8e8e8;
+      --border-subtle: #ddd;
+      --border-mid: #ccc;
+      --border-strong: #aaa;
+      --text: #111;
+      --text-dim: #333;
+      --text-muted: #666;
+      --text-faint: #888;
+      --text-empty: #ccc;
+      --accent-dim: #60a5fa;
+      --accent-light: #1d4ed8;
+      --accent-lighter: #1e40af;
+      --scrollbar-thumb: #60a5fa;
+      --hover-text: #111;
+      --error-border: #fca5a5;
+      --error-text: #dc2626;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #app {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 20px 24px 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .logo span { color: var(--accent); }
+
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    main {
+      padding: 22px 24px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      flex: 1;
+    }
+
+    .toolbar-btn {
+      background: none;
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 6px 12px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #themeBtn { padding: 7px 9px; border-color: transparent; }
+    .toolbar-btn:focus-visible, .toolbar-btn:active {
+      background: rgba(37,99,235,0.4);
+      border-color: var(--accent);
+      color: var(--hover-text);
+    }
+    @media (hover: hover) {
+      .toolbar-btn:hover {
+        background: rgba(37,99,235,0.4);
+        border-color: var(--accent);
+        color: var(--hover-text);
+      }
+    }
+
+    footer {
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      border-top: 1px solid var(--border-faint);
+      text-wrap: balance;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    @media (hover: hover) {
+      footer a:hover { color: var(--text-faint); }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="header-left">
+      <div class="logo">Scrum <span>Poker</span></div>
+      <div class="subtitle">Agile Planning Tool · v1.0.0</div>
+    </div>
+    <button type="button" id="themeBtn" class="toolbar-btn"></button>
+  </header>
+
+  <main>
+  </main>
+
+  <footer>
+    © 2026 Nev Delap.
+  </footer>
+</div>
+
+<script>
+// ── Theme ────────────────────────────────────────────────────────────────────
+const ICON_SUN = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
+const ICON_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+
+function applyTheme(dark) {
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.getElementById('themeBtn').innerHTML = dark ? ICON_SUN : ICON_MOON;
+  document.getElementById('themeBtn').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  document.getElementById('themeColor').content = dark ? '#000000' : '#f5f5f5';
+}
+
+let isDark = document.documentElement.dataset.theme !== 'light';
+applyTheme(isDark);
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  isDark = !isDark;
+  applyTheme(isDark);
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+</script>
+</body>
+</html>
