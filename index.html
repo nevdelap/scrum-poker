@@ -443,6 +443,7 @@
       overlayNumber.textContent = card.n;
       overlayTshirt.textContent = card.t;
 
+      cardEl.blur();
       overlay.style.transformOrigin = `${cx}px ${cy}px`;
       overlay.classList.add('open');
       history.pushState({ cardOpen: true }, '');
