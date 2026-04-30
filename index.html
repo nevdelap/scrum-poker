@@ -358,7 +358,7 @@
     <header>
       <div class="header-left">
         <div class="logo">Scrum <span>Poker</span></div>
-        <div class="subtitle">Agile Planning Tool · v1.0.0</div>
+        <div class="subtitle">Agile Planning Tool · v1.0.2</div>
       </div>
       <button type="button" id="themeBtn" class="toolbar-btn"></button>
     </header>
@@ -443,6 +443,7 @@
       overlayNumber.textContent = card.n;
       overlayTshirt.textContent = card.t;
 
+      cardEl.blur();
       overlay.style.transformOrigin = `${cx}px ${cy}px`;
       overlay.classList.add('open');
       history.pushState({ cardOpen: true }, '');
