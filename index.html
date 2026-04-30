@@ -55,6 +55,10 @@
   </script>
   <style>
     :root {
+      --card-overlay-duration: 0.3s;
+    }
+
+    :root {
       color-scheme: dark;
       /* page background behind cards */
       --bg: #000;
@@ -370,7 +374,7 @@
     <header>
       <div class="header-left">
         <div class="logo">Scrum <span>Poker</span></div>
-        <div class="subtitle">Agile Planning Tool · v1.0.5</div>
+        <div class="subtitle">Agile Planning Tool · v1.0.6</div>
       </div>
       <button type="button" id="themeBtn" class="toolbar-btn"></button>
     </header>
@@ -424,10 +428,33 @@
 
     let selected = null;
     let animating = false;
+    let animationLock = null;
 
     const overlay = document.getElementById('cardOverlay');
     const overlayNumber = document.getElementById('overlayNumber');
     const overlayTshirt = document.getElementById('overlayTshirt');
+
+    function getTransitionDuration() {
+      const style = getComputedStyle(overlay);
+      const duration = style.transitionDuration;
+      const match = duration.match(/^([\d.]+)(s|ms)$/);
+      if (match) {
+        const value = parseFloat(match[1]);
+        return match[2] === 's' ? value * 1000 : value;
+      }
+      return 300;
+    }
+
+    function setAnimating() {
+      animating = true;
+      if (animationLock) clearTimeout(animationLock);
+      animationLock = requestAnimationFrame(() => {
+        animationLock = setTimeout(() => {
+          animating = false;
+          animationLock = null;
+        }, getTransitionDuration() + 50);
+      });
+    }
 
     function renderCards() {
       const grid = document.getElementById('cardGrid');
@@ -448,7 +475,6 @@
 
     function openCard(card, cardEl) {
       if (animating) return;
-      animating = true;
 
       const rect = cardEl.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
@@ -463,18 +489,15 @@
       history.pushState({ cardOpen: true }, '');
 
       selected = true;
-      setTimeout(() => { animating = false; }, 320);
+      setAnimating();
     }
 
     function closeCard(skipHistory = false) {
       if (!selected || animating) return;
-      animating = true;
       if (!skipHistory) history.back();
       overlay.classList.remove('open');
-      setTimeout(() => {
-        selected = null;
-        animating = false;
-      }, 320);
+      selected = null;
+      setAnimating();
     }
 
     window.addEventListener('popstate', () => { if (selected) closeCard(true); });
