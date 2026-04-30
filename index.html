@@ -80,6 +80,8 @@
       --accent: #2563eb;
       /* toolbar button text on hover/active */
       --hover-text: #fff;
+      /* card overlay animation */
+      --card-overlay-duration: 0.3s;
     }
 
     :root[data-theme="light"] {
@@ -320,7 +322,7 @@
       opacity: 0;
       transform: scale(0.05);
       pointer-events: none;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform var(--card-overlay-duration) cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .card-overlay.open {
@@ -436,13 +438,16 @@
 
     function getTransitionDuration() {
       const style = getComputedStyle(overlay);
-      const duration = style.transitionDuration;
-      const match = duration.match(/^([\d.]+)(s|ms)$/);
-      if (match) {
-        const value = parseFloat(match[1]);
-        return match[2] === 's' ? value * 1000 : value;
-      }
-      return 300;
+      const durations = style.transitionDuration.split(',').map(d => {
+        const match = d.trim().match(/^([\d.]+)(s|ms)$/);
+        if (match) {
+          const value = parseFloat(match[1]);
+          return match[2] === 's' ? value * 1000 : value;
+        }
+        return 0;
+      });
+      const maxDuration = Math.max(...durations, 0);
+      return maxDuration > 0 ? maxDuration : 300;
     }
 
     function setAnimating() {
