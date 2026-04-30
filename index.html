@@ -33,9 +33,6 @@
   <!-- Set theme before first paint to avoid flash -->
   <script>!function () { var t = localStorage.getItem('theme') || 'light'; document.documentElement.dataset.theme = t; document.getElementById('themeColor').content = t === 'dark' ? '#000000' : '#f5f5f5' }()</script>
   <title>Scrum Poker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -135,7 +132,6 @@
       border-bottom: 1px solid var(--border-subtle);
       padding: 20px 24px 16px;
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       align-items: center;
       flex-shrink: 0;
@@ -148,7 +144,6 @@
     }
 
     .logo {
-      font-family: sans-serif;
       font-size: 22px;
       font-weight: 600;
       color: var(--text);
@@ -160,7 +155,6 @@
     }
 
     .subtitle {
-      font-family: sans-serif;
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 0.12em;
@@ -183,7 +177,6 @@
       border: 1px solid var(--border-mid);
       border-radius: 3px;
       color: var(--text-muted);
-      font-family: sans-serif;
       font-size: 10px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -288,14 +281,8 @@
       outline-offset: 2px;
     }
 
-    .card.faded {
-      opacity: 0;
-      pointer-events: none;
-    }
-
     .card-number,
     .card-tshirt {
-      font-family: sans-serif;
       font-size: clamp(48px, 10vw, 96px);
       font-weight: 600;
       line-height: 1;
@@ -337,13 +324,13 @@
       pointer-events: auto;
     }
 
-    .card-overlay .card-number {
-      font-size: clamp(216px, 54vw, 480px);
-      font-weight: 700;
-    }
-
+    .card-overlay .card-number,
     .card-overlay .card-tshirt {
       font-size: clamp(216px, 54vw, 480px);
+    }
+
+    .card-overlay .card-number {
+      font-weight: 700;
     }
 
     @media (orientation: landscape) {
