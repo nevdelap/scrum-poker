@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -24,13 +25,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PG52HJW8GT"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-PG52HJW8GT');
   </script>
   <!-- Set theme before first paint to avoid flash -->
-  <script>!function(){var t=localStorage.getItem('theme')||'light';document.documentElement.dataset.theme=t;document.getElementById('themeColor').content=t==='dark'?'#000000':'#f5f5f5'}()</script>
+  <script>!function () { var t = localStorage.getItem('theme') || 'light'; document.documentElement.dataset.theme = t; document.getElementById('themeColor').content = t === 'dark' ? '#000000' : '#f5f5f5' }()</script>
   <title>Scrum Poker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,51 +60,61 @@
     :root {
       color-scheme: dark;
       --bg: #000;
-      --bg-surface: #0a0a0a;
+      /* page background behind cards */
+      --bg-surface: #222;
+      /* header, footer, card backgrounds */
       --border-faint: #0a0a0a;
-      --border-subtle: #111;
-      --border-mid: #222;
-      --border-strong: #444;
+      /* footer top border */
+      --border-subtle: #f44;
+      /* header bottom border */
+      --border-mid: #333;
+      /* card borders, theme button border */
       --text: #fff;
-      --text-dim: #ccc;
+      /* primary text */
       --text-muted: #888;
+      /* subtitle, footer, toolbar button labels */
       --text-faint: #999;
-      --text-empty: #333;
+      /* footer link hover */
       --accent: #2563eb;
-      --accent-dim: #1e3a5f;
-      --accent-light: #60a5fa;
-      --accent-lighter: #93c5fd;
-      --scrollbar-thumb: #1e3a5f;
+      /* logo, t-shirt sizes, hover/focus highlights */
       --hover-text: #fff;
-      --error-border: #7f1d1d;
-      --error-text: #f87171;
+      /* toolbar button text on hover/active */
     }
 
     :root[data-theme="light"] {
       color-scheme: light;
       --bg: #fdfdfd;
+      /* page background behind cards */
       --bg-surface: #fff;
+      /* header, footer, card backgrounds */
       --border-faint: #e8e8e8;
+      /* footer top border */
       --border-subtle: #ddd;
-      --border-mid: #ccc;
-      --border-strong: #aaa;
+      /* header bottom border */
+      --border-mid: #ddd;
+      /* card borders, theme button border */
       --text: #111;
-      --text-dim: #333;
+      /* primary text */
       --text-muted: #666;
+      /* subtitle, footer, toolbar button labels */
       --text-faint: #888;
-      --text-empty: #ccc;
-      --accent-dim: #60a5fa;
-      --accent-light: #1d4ed8;
-      --accent-lighter: #1e40af;
-      --scrollbar-thumb: #60a5fa;
+      /* footer link hover */
+      --accent: #2563eb;
+      /* logo, t-shirt sizes, hover/focus highlights */
       --hover-text: #111;
-      --error-border: #fca5a5;
-      --error-text: #dc2626;
+      /* toolbar button text on hover/active */
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    html, body {
+    html,
+    body {
       height: 100%;
       background: var(--bg);
       color: var(--text);
@@ -120,6 +131,7 @@
     }
 
     header {
+      background: var(--bg-surface);
       border-bottom: 1px solid var(--border-subtle);
       padding: 20px 24px 16px;
       display: flex;
@@ -142,7 +154,10 @@
       color: var(--text);
       letter-spacing: 0.02em;
     }
-    .logo span { color: var(--accent); }
+
+    .logo span {
+      color: var(--accent);
+    }
 
     .subtitle {
       font-family: 'Inter', sans-serif;
@@ -158,6 +173,9 @@
       width: 100%;
       margin: 0 auto;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg);
     }
 
     .toolbar-btn {
@@ -176,21 +194,29 @@
       align-items: center;
       justify-content: center;
     }
-    #themeBtn { padding: 7px 9px; border-color: transparent; }
-    .toolbar-btn:focus-visible, .toolbar-btn:active {
-      background: rgba(37,99,235,0.4);
+
+    #themeBtn {
+      padding: 7px 9px;
+      border-color: transparent;
+    }
+
+    .toolbar-btn:focus-visible,
+    .toolbar-btn:active {
+      background: rgba(37, 99, 235, 0.4);
       border-color: var(--accent);
       color: var(--hover-text);
     }
+
     @media (hover: hover) {
       .toolbar-btn:hover {
-        background: rgba(37,99,235,0.4);
+        background: rgba(37, 99, 235, 0.4);
         border-color: var(--accent);
         color: var(--hover-text);
       }
     }
 
     footer {
+      background: var(--bg-surface);
       padding: 16px 24px;
       text-align: center;
       font-size: 9px;
@@ -199,50 +225,249 @@
       border-top: 1px solid var(--border-faint);
       text-wrap: balance;
     }
-    footer a { color: var(--text-muted); text-decoration: none; }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
     @media (hover: hover) {
-      footer a:hover { color: var(--text-faint); }
+      footer a:hover {
+        color: var(--text-faint);
+      }
+    }
+
+    #cardGrid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-mid);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: opacity 0.25s, border-color 0.2s, background 0.2s;
+    }
+
+    @media (hover: hover) {
+      .card:hover {
+        border-color: var(--accent);
+        background: rgba(37, 99, 235, 0.06);
+      }
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .card.faded {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .card-number,
+    .card-tshirt {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(24px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .card-number {
+      color: var(--text);
+    }
+
+    .card-tshirt {
+      color: var(--accent);
+    }
+
+    .card-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-mid);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(16px, 5vw, 48px);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      z-index: 9999;
+      opacity: 0;
+      transform: scale(0.05);
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-overlay.open {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .card-overlay .card-number {
+      font-size: clamp(72px, 18vw, 160px);
+      font-weight: 700;
+    }
+
+    .card-overlay .card-tshirt {
+      font-size: clamp(72px, 18vw, 160px);
+    }
+
+    @media (orientation: landscape) {
+      #cardGrid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+      }
+
+      .card {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+
+      .card-number,
+      .card-tshirt {
+        width: auto;
+      }
     }
   </style>
 </head>
+
 <body>
-<div id="app">
-  <header>
-    <div class="header-left">
-      <div class="logo">Scrum <span>Poker</span></div>
-      <div class="subtitle">Agile Planning Tool · v1.0.0</div>
-    </div>
-    <button type="button" id="themeBtn" class="toolbar-btn"></button>
-  </header>
+  <div id="app">
+    <header>
+      <div class="header-left">
+        <div class="logo">Scrum <span>Poker</span></div>
+        <div class="subtitle">Agile Planning Tool · v1.0.0</div>
+      </div>
+      <button type="button" id="themeBtn" class="toolbar-btn"></button>
+    </header>
 
-  <main>
-  </main>
+    <main>
+      <div id="cardGrid"></div>
+    </main>
 
-  <footer>
-    © 2026 Nev Delap.
-  </footer>
-</div>
+    <footer>
+      © 2026 Nev Delap.
+    </footer>
+  </div>
 
-<script>
-// ── Theme ────────────────────────────────────────────────────────────────────
-const ICON_SUN = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
-const ICON_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+  <div id="cardOverlay" class="card-overlay" role="dialog" aria-modal="true" aria-label="Selected card">
+    <div class="card-number" id="overlayNumber"></div>
+    <div class="card-tshirt" id="overlayTshirt"></div>
+  </div>
 
-function applyTheme(dark) {
-  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-  document.getElementById('themeBtn').innerHTML = dark ? ICON_SUN : ICON_MOON;
-  document.getElementById('themeBtn').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-  document.getElementById('themeColor').content = dark ? '#000000' : '#f5f5f5';
-}
+  <script>
+    // ── Theme ────────────────────────────────────────────────────────────────────
+    const ICON_SUN = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`;
+    const ICON_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
 
-let isDark = document.documentElement.dataset.theme !== 'light';
-applyTheme(isDark);
+    function applyTheme(dark) {
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.getElementById('themeBtn').innerHTML = dark ? ICON_SUN : ICON_MOON;
+      document.getElementById('themeBtn').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      document.getElementById('themeColor').content = dark ? '#000000' : '#f5f5f5';
+    }
 
-document.getElementById('themeBtn').addEventListener('click', () => {
-  isDark = !isDark;
-  applyTheme(isDark);
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-});
-</script>
+    let isDark = document.documentElement.dataset.theme !== 'light';
+    applyTheme(isDark);
+
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      isDark = !isDark;
+      applyTheme(isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // ── Cards ────────────────────────────────────────────────────────────────────
+    const CARDS = [
+      { n: 1, t: 'T' },
+      { n: 2, t: 'XS' },
+      { n: 3, t: 'S' },
+      { n: 5, t: 'M' },
+      { n: 8, t: 'L' },
+      { n: 13, t: 'XL' },
+    ];
+
+    let selected = null;
+    let animating = false;
+
+    const overlay = document.getElementById('cardOverlay');
+    const overlayNumber = document.getElementById('overlayNumber');
+    const overlayTshirt = document.getElementById('overlayTshirt');
+
+    function renderCards() {
+      const grid = document.getElementById('cardGrid');
+      CARDS.forEach(card => {
+        const el = document.createElement('div');
+        el.className = 'card';
+        el.setAttribute('role', 'button');
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('aria-label', `${card.n}, ${card.t}`);
+        el.innerHTML = `<div class="card-number">${card.n}</div><div class="card-tshirt">${card.t}</div>`;
+        el.addEventListener('click', () => openCard(card, el));
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(card, el); }
+        });
+        grid.appendChild(el);
+      });
+    }
+
+    function openCard(card, cardEl) {
+      if (animating) return;
+      animating = true;
+
+      const rect = cardEl.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+
+      overlayNumber.textContent = card.n;
+      overlayTshirt.textContent = card.t;
+
+      overlay.style.transformOrigin = `${cx}px ${cy}px`;
+      overlay.classList.add('open');
+      history.pushState({ cardOpen: true }, '');
+
+      selected = true;
+      setTimeout(() => { animating = false; }, 320);
+    }
+
+    function closeCard(skipHistory = false) {
+      if (!selected || animating) return;
+      animating = true;
+      if (!skipHistory) history.back();
+      overlay.classList.remove('open');
+      setTimeout(() => {
+        selected = null;
+        animating = false;
+      }, 320);
+    }
+
+    window.addEventListener('popstate', () => { if (selected) closeCard(true); });
+    overlay.addEventListener('click', () => closeCard());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCard(); });
+
+    renderCards();
+  </script>
 </body>
+
 </html>

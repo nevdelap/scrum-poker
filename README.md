@@ -28,8 +28,3 @@ All state is local to the browser session.
 just format   # format
 just lint     # format then lint
 ```
-
-## Maintaining the repository
-
-No periodic maintenance tasks are required. The app has no bundled data files
-or external assets that need updating.
