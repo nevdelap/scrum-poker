@@ -118,7 +118,7 @@
       height: 100%;
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       -webkit-text-size-adjust: 100%;
     }
 
@@ -148,7 +148,7 @@
     }
 
     .logo {
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       font-size: 22px;
       font-weight: 600;
       color: var(--text);
@@ -160,7 +160,7 @@
     }
 
     .subtitle {
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 0.12em;
@@ -183,7 +183,7 @@
       border: 1px solid var(--border-mid);
       border-radius: 3px;
       color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
+      font-family: sans-serif;
       font-size: 10px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -231,12 +231,24 @@
       text-decoration: none;
     }
 
-    footer .feedback { font-size: 11px; letter-spacing: 0.06em; margin-bottom: 10px; }
-    footer .feedback a { color: var(--accent); }
+    footer .feedback {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    footer .feedback a {
+      color: var(--accent);
+    }
 
     @media (hover: hover) {
-      footer a:hover { color: var(--text-faint); }
-      footer .feedback a:hover { color: var(--accent); }
+      footer a:hover {
+        color: var(--text-faint);
+      }
+
+      footer .feedback a:hover {
+        color: var(--accent);
+      }
     }
 
     #cardGrid {
@@ -283,8 +295,8 @@
 
     .card-number,
     .card-tshirt {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(24px, 5vw, 48px);
+      font-family: sans-serif;
+      font-size: clamp(48px, 10vw, 96px);
       font-weight: 600;
       line-height: 1;
       text-align: center;
@@ -304,7 +316,7 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-mid);
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: clamp(16px, 5vw, 48px);
@@ -326,12 +338,12 @@
     }
 
     .card-overlay .card-number {
-      font-size: clamp(72px, 18vw, 160px);
+      font-size: clamp(216px, 54vw, 480px);
       font-weight: 700;
     }
 
     .card-overlay .card-tshirt {
-      font-size: clamp(72px, 18vw, 160px);
+      font-size: clamp(216px, 54vw, 480px);
     }
 
     @media (orientation: landscape) {
@@ -349,7 +361,17 @@
 
       .card-number,
       .card-tshirt {
+        font-size: clamp(24px, 5vw, 48px);
         width: auto;
+      }
+
+      .card-overlay {
+        flex-direction: row;
+      }
+
+      .card-overlay .card-number,
+      .card-overlay .card-tshirt {
+        font-size: clamp(108px, 27vw, 240px);
       }
     }
   </style>
@@ -360,7 +382,7 @@
     <header>
       <div class="header-left">
         <div class="logo">Scrum <span>Poker</span></div>
-        <div class="subtitle">Agile Planning Tool · v1.0.3</div>
+        <div class="subtitle">Agile Planning Tool · v1.0.4</div>
       </div>
       <button type="button" id="themeBtn" class="toolbar-btn"></button>
     </header>
@@ -370,7 +392,8 @@
     </main>
 
     <footer>
-      <div class="feedback">Found a bug or have a suggestion? <a href="https://github.com/nevdelap/scrum-poker/issues" target="_blank" rel="noopener noreferrer">Open an issue to let me know.</a></div>
+      <div class="feedback">Found a bug or have a suggestion? <a href="https://github.com/nevdelap/scrum-poker/issues"
+          target="_blank" rel="noopener noreferrer">Open an issue to let me know.</a></div>
       © 2026 Nev Delap.
     </footer>
   </div>
