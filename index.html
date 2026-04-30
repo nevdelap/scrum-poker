@@ -120,10 +120,11 @@
     }
 
     #app {
-      min-height: 100vh;
-      min-height: 100dvh;
+      height: 100vh;
+      height: 100svh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       background: var(--bg);
     }
 
@@ -369,7 +370,7 @@
     <header>
       <div class="header-left">
         <div class="logo">Scrum <span>Poker</span></div>
-        <div class="subtitle">Agile Planning Tool · v1.0.4</div>
+        <div class="subtitle">Agile Planning Tool · v1.0.5</div>
       </div>
       <button type="button" id="themeBtn" class="toolbar-btn"></button>
     </header>
