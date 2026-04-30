@@ -231,10 +231,12 @@
       text-decoration: none;
     }
 
+    footer .feedback { font-size: 11px; letter-spacing: 0.06em; margin-bottom: 10px; }
+    footer .feedback a { color: var(--accent); }
+
     @media (hover: hover) {
-      footer a:hover {
-        color: var(--text-faint);
-      }
+      footer a:hover { color: var(--text-faint); }
+      footer .feedback a:hover { color: var(--accent); }
     }
 
     #cardGrid {
@@ -358,7 +360,7 @@
     <header>
       <div class="header-left">
         <div class="logo">Scrum <span>Poker</span></div>
-        <div class="subtitle">Agile Planning Tool · v1.0.2</div>
+        <div class="subtitle">Agile Planning Tool · v1.0.3</div>
       </div>
       <button type="button" id="themeBtn" class="toolbar-btn"></button>
     </header>
@@ -368,6 +370,7 @@
     </main>
 
     <footer>
+      <div class="feedback">Found a bug or have a suggestion? <a href="https://github.com/nevdelap/scrum-poker/issues" target="_blank" rel="noopener noreferrer">Open an issue to let me know.</a></div>
       © 2026 Nev Delap.
     </footer>
   </div>
