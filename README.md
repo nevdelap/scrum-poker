@@ -15,6 +15,7 @@ Everything runs in the browser — no account, no server, no API calls.
 ## Features
 
 - **Simple estimation** — pick a card value and reveal estimates as a team
+- **Light and dark modes** — follows your system preference, or can be set manually
 - **Mobile-friendly** — works on phones and tablets
 - **Free and open source** — no sign-up, no ads, no tracking beyond basic analytics
 
