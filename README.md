@@ -3,6 +3,11 @@
 A free scrum poker app for agile teams. Estimate user stories together in
 real time without needing a dedicated tool or subscription.
 
+<figure>
+<img src="phone-image.png" width="400" alt="Scrum Poker on mobile">
+<figcaption>Scrum Poker on mobile.</figcaption>
+</figure>
+
 Everything runs in the browser — no account, no server, no API calls.
 
 **[https://nevdelap.github.io/scrum-poker/](https://nevdelap.github.io/scrum-poker/)**
