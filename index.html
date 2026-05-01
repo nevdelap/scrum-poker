@@ -502,17 +502,16 @@
       setAnimating();
     }
 
-    function closeCard(skipHistory = false) {
+    function closeCard() {
       if (!selected || animating) return;
-      if (!skipHistory) history.back();
       overlay.classList.remove('open');
       selected = null;
       setAnimating();
     }
 
-    window.addEventListener('popstate', () => { if (selected) closeCard(true); });
-    overlay.addEventListener('click', () => closeCard());
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCard(); });
+    window.addEventListener('popstate', () => closeCard());
+    overlay.addEventListener('click', () => { closeCard(); history.back(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCard(); history.back(); } });
 
     renderCards();
   </script>
