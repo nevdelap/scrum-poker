@@ -22,13 +22,14 @@ Everything runs in the browser — no account, no server, no API calls.
 A single-page static web app with no external dependencies beyond fonts.
 All state is local to the browser session.
 
-## Licenses
+## License
 
 - App code: [MIT](LICENSE)
 
-## Markdown
+## Local development
 
 ```bash
-just format   # format
+just serve    # serve locally and open in browser
+just format   # format Markdown
 just lint     # format then lint
 ```
